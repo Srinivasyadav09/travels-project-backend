@@ -13,7 +13,7 @@ app = FastAPI(title="Travels API", description="API for managing bookings, vehic
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://shambhavi-travels.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
