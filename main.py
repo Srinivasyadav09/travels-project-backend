@@ -11,7 +11,8 @@ app = FastAPI(title="Travels API", description="API for managing bookings, vehic
 
 origins = [
     "http://localhost:3000",
-    "https://travels-project-zeta.vercel.app", # Add your specific Vercel URL here
+    "https://travels-project-zeta.vercel.app",
+    "shambhavi-travels.netlify.app" # Add your specific Vercel URL here
 ]
 
 app.add_middleware(
