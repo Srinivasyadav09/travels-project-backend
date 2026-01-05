@@ -1,14 +1,12 @@
-from database import SessionLocal
-import models
+import sqlite3
 
-def print_bookings():
-    db = SessionLocal()
-    try:
-        bookings = db.query(models.Booking).all()
-        for b in bookings:
-            print(b.__dict__)
-    finally:
-        db.close()
+conn = sqlite3.connect("bookings.db")
+cursor = conn.cursor()
 
-if __name__ == "__main__":
-    print_bookings()
+cursor.execute("SELECT * FROM bookings")
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
+
+conn.close()
