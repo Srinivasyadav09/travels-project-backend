@@ -30,6 +30,20 @@ def get_db():
     finally:
         db.close()
 
+
+@app.get("/health/db", tags=["Health"])
+def db_health():
+    """Simple DB connectivity check. Returns 200 if a test query succeeds."""
+    db = SessionLocal()
+    try:
+        # lightweight check
+        db.execute("SELECT 1")
+        return {"status": "ok", "db_connected": True}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"DB connection error: {e}")
+    finally:
+        db.close()
+
 # ------------------ BOOKINGS ------------------
 
 @app.get("/bookings", response_model=List[schemas.BookingResponse], tags=["Bookings"])
