@@ -9,16 +9,18 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Travels API", description="API for managing bookings, vehicles, and packages")
 
-
+origins = [
+    "http://localhost:3000",
+    "https://travels-project-zeta.vercel.app", # Add your specific Vercel URL here
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://travels-project-zeta.vercel.app", "http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Create tables
 models.Base.metadata.create_all(bind=engine)
 
